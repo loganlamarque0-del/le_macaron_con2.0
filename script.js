@@ -74,9 +74,9 @@ function creerEnnemi() {
 }
 
 function deplacerJoueur() {
-  if (touches["z"] || touches["arrowup"]) joueur.y -= joueur.vitesse;
-  if (touches["s"] || touches["arrowdown"]) joueur.y += joueur.vitesse;
-  if (touches["q"] || touches["arrowleft"]) joueur.x -= joueur.vitesse;
+  if (touches["w"] || touches["arrowup"]) joueur.y -= joueur.vitesse;
+  if (touches["a"] || touches["arrowdown"]) joueur.y += joueur.vitesse;
+  if (touches["s"] || touches["arrowleft"]) joueur.x -= joueur.vitesse;
   if (touches["d"] || touches["arrowright"]) joueur.x += joueur.vitesse;
 
   joueur.x = Math.max(joueur.rayon, Math.min(canvas.width - joueur.rayon, joueur.x));

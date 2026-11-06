@@ -10,35 +10,35 @@
 <body>
   <div id="menu" class="screen">
     <h1>COMBAT 3D</h1>
-    <p>Survis et élimine tous les bots !</p>
+    <p>Élimine les bots et récupère leurs récompenses !</p>
     <button id="playButton">JOUER</button>
+    <p id="status">Chargement du moteur 3D...</p>
     <p class="instructions">
       Z / W : avancer · S : reculer<br>
       D : gauche · A : droite<br>
       Clic gauche : tirer · Souris : viser<br>
       Espace : sauter · Échap : pause
     </p>
-    <p id="loadMessage">Chargement du jeu...</p>
   </div>
 
   <div id="hud">
     <div class="stat">❤️ Vie : <span id="health">100</span></div>
     <div class="stat">🔫 Balles : <span id="ammo">150</span></div>
-    <div class="stat">☠️ Bots éliminés : <span id="kills">0</span></div>
+    <div class="stat">☠️ Éliminations : <span id="kills">0</span></div>
     <div id="message"></div>
   </div>
 
   <div id="crosshair">+</div>
 
-  <div id="pauseScreen" class="screen">
+  <div id="pauseScreen" class="screen hidden">
     <h1>PAUSE</h1>
     <button id="resumeButton">REPRENDRE</button>
-    <button id="pauseMenuButton">MENU</button>
+    <button id="menuButton">MENU</button>
   </div>
 
-  <div id="gameOver" class="screen">
+  <div id="gameOver" class="screen hidden">
     <h1>PARTIE TERMINÉE</h1>
-    <p>Bots éliminés : <span id="finalKills">0</span></p>
+    <p>Éliminations : <span id="finalKills">0</span></p>
     <button id="restartButton">RECOMMENCER</button>
   </div>
 
@@ -57,9 +57,13 @@
     </div>
   </div>
 
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
-    onerror="document.getElementById('loadMessage').textContent='Erreur : impossible de charger Three.js. Vérifie Internet.'">
+  <!-- Moteur 3D -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+    // Deuxième adresse si la première ne fonctionne pas
+    if (typeof THREE === "undefined") {
+      document.write('<script src="https://unpkg.com/three@0.128.0/build/three.min.js"><\/script>');
+    }
   </script>
   <script src="script.js"></script>
 </body>

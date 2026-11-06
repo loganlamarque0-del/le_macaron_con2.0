@@ -6,9 +6,9 @@
 body {
   margin: 0;
   overflow: hidden;
-  font-family: Arial, sans-serif;
-  background: #75b9df;
+  background: #76b9df;
   color: white;
+  font-family: Arial, sans-serif;
   touch-action: none;
 }
 
@@ -22,31 +22,38 @@ canvas {
   z-index: 20;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  background: linear-gradient(#123d5edb, #101b2bf2);
+  justify-content: center;
+  background: linear-gradient(135deg, #102b47, #234e65, #101b2d);
   text-align: center;
+  overflow-y: auto;
 }
 
 #menu h1 {
+  margin: 5px;
   font-size: clamp(40px, 9vw, 85px);
-  margin: 0;
-  color: #ffdc35;
+  color: #ffda37;
   text-shadow: 4px 4px #000;
 }
 
+#menu h2 {
+  margin: 0 0 8px;
+}
+
 #menu > p {
-  font-size: 22px;
+  font-size: 18px;
 }
 
 button {
-  border: 3px solid white;
-  background: #e89c20;
+  cursor: pointer;
+  border: 2px solid white;
+  border-radius: 8px;
+  background: #e99a20;
   color: white;
   font-weight: bold;
-  cursor: pointer;
-  border-radius: 9px;
-  padding: 12px 22px;
+  padding: 12px 20px;
+  font-size: 15px;
+  touch-action: none;
 }
 
 button:active {
@@ -54,45 +61,52 @@ button:active {
 }
 
 #playButton {
-  font-size: 28px;
-  margin: 20px;
-  padding: 15px 65px;
+  font-size: 30px;
+  padding: 15px 70px;
+  margin: 12px;
 }
 
 .instructions {
-  font-size: 13px;
-  line-height: 1.2;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(130px, 1fr));
+  gap: 0 20px;
+  font-size: 12px;
+}
+
+.instructions p {
+  margin: 5px;
 }
 
 #hud {
   position: fixed;
-  z-index: 5;
   top: 12px;
   left: 12px;
+  z-index: 5;
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 7px;
   pointer-events: none;
 }
 
-.hud-box {
-  padding: 10px 13px;
+#hud div {
+  background: #102235d9;
   border: 2px solid white;
-  border-radius: 7px;
-  background: #142638c9;
+  border-radius: 6px;
+  padding: 9px;
+  font-size: 12px;
   font-weight: bold;
-  font-size: 13px;
 }
 
 #crosshair {
+  display: none;
   position: fixed;
   z-index: 6;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  font-size: 30px;
+  font-size: 28px;
   font-weight: bold;
-  text-shadow: 0 0 4px black;
+  text-shadow: 1px 1px 4px black;
   pointer-events: none;
 }
 
@@ -105,7 +119,7 @@ button:active {
 
 .enemy-health {
   position: absolute;
-  width: 90px;
+  width: 85px;
   transform: translate(-50%, -50%);
   text-align: center;
   font-size: 12px;
@@ -116,13 +130,24 @@ button:active {
 .health-background {
   height: 9px;
   margin-top: 3px;
-  border: 1px solid white;
   background: #333;
+  border: 1px solid white;
 }
 
 .health-fill {
   height: 100%;
-  background: #29e64d;
+  background: #2be34e;
+}
+
+#notice {
+  position: fixed;
+  top: 85px;
+  left: 50%;
+  z-index: 8;
+  transform: translateX(-50%);
+  font-weight: bold;
+  text-shadow: 2px 2px black;
+  pointer-events: none;
 }
 
 .overlay {
@@ -138,88 +163,74 @@ button:active {
 }
 
 .overlay h1 {
-  font-size: 45px;
-  color: #ffcf36;
-}
-
-.overlay button {
-  font-size: 18px;
-}
-
-#notice {
-  position: fixed;
-  z-index: 8;
-  top: 100px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-weight: bold;
-  text-shadow: 2px 2px black;
-  pointer-events: none;
+  color: #ffda37;
+  font-size: 42px;
 }
 
 #mobileControls {
   display: none;
   position: fixed;
   z-index: 10;
-  inset: auto 0 15px;
+  bottom: 12px;
+  left: 0;
+  right: 0;
   justify-content: space-between;
   align-items: end;
-  padding: 12px;
+  padding: 10px;
   pointer-events: none;
 }
 
-#joystick, #mobileActions {
-  pointer-events: auto;
+#movement, #actions {
   display: flex;
   flex-direction: column;
-  gap: 7px;
-}
-
-.joystick-row {
-  display: flex;
   gap: 5px;
+  pointer-events: auto;
 }
 
-#mobileControls button {
-  min-width: 43px;
-  min-height: 43px;
-  padding: 7px;
-  background: #142638d9;
-  border: 2px solid white;
-  touch-action: none;
+#movement button {
+  min-width: 44px;
+  min-height: 44px;
+  background: #142638df;
 }
 
-#mobileActions {
+#actions {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
 
-#mobileActions button {
-  font-size: 11px;
+#actions button {
+  min-width: 55px;
+  min-height: 43px;
+  padding: 6px;
+  font-size: 10px;
+  background: #142638df;
 }
 
-#loading {
+#error {
+  display: none;
   position: fixed;
-  z-index: 40;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  z-index: 50;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #7e1010;
   color: white;
-  font-size: 20px;
-  text-shadow: 2px 2px black;
+  padding: 15px;
+  font-size: 13px;
+  white-space: pre-wrap;
 }
 
-@media (max-width: 800px), (pointer: coarse) {
+@media (pointer: coarse), (max-width: 800px) {
   #mobileControls {
     display: flex;
   }
 
-  #menu .instructions {
-    font-size: 11px;
+  .instructions {
+    font-size: 10px;
   }
 
-  .hud-box {
+  #hud div {
+    padding: 6px;
     font-size: 10px;
-    padding: 7px;
   }
 }

@@ -1,38 +1,41 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Jeu de Combat 3D</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Combat 3D</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
     <div id="menu">
         <h1>COMBAT 3D</h1>
+        <p>Prépare-toi au combat !</p>
         <button id="jouer">JOUER</button>
+        <p id="erreur"></p>
     </div>
 
     <div id="interface">
-        <div>❤️ Vies : <span id="vies">100</span></div>
-        <div>⭐ Score : <span id="score">0</span></div>
+        <p>❤️ Vies : <span id="vies">100</span></p>
+        <p>⭐ Score : <span id="score">0</span></p>
+    </div>
+
+    <div id="commandes">
+        W A S D : Se déplacer<br>
+        ESPACE : Tirer
     </div>
 
     <div id="fin">
         <h1>PARTIE TERMINÉE</h1>
-        <p>Ton score : <span id="scoreFinal">0</span></p>
+        <p>Score : <span id="scoreFinal">0</span></p>
         <button id="rejouer">REJOUER</button>
-    </div>
-
-    <div id="commandes">
-        W A S D : Déplacement<br>
-        ESPACE : Tirer
     </div>
 
     <div id="jeu"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="script.js"></script>
+    <script src="./script.js"></script>
 
 </body>
 </html>

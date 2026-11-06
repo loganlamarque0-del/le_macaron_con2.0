@@ -1,32 +1,38 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mon jeu 3D</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Jeu de Combat 3D</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div id="menu">
-    <h1>MON JEU 3D</h1>
-    <p>Prêt pour le combat ?</p>
-    <button id="start">JOUER</button>
-    <p>WASD : bouger | Souris : regarder</p>
-    <p>Clic gauche : tirer | Espace : sauter</p>
-    <p>Maj : courir | R : recharger</p>
-  </div>
+    <div id="menu">
+        <h1>COMBAT 3D</h1>
+        <button id="jouer">JOUER</button>
+    </div>
 
-  <div id="hud">
-    <div>❤️ Vie : <span id="vie">100</span></div>
-    <div>🎯 Munitions : <span id="ammo">12</span> / 12</div>
-    <div>🏆 Éliminations : <span id="score">0</span></div>
-  </div>
+    <div id="interface">
+        <div>❤️ Vies : <span id="vies">100</span></div>
+        <div>⭐ Score : <span id="score">0</span></div>
+    </div>
 
-  <div id="viseur">+</div>
-  <div id="message"></div>
+    <div id="fin">
+        <h1>PARTIE TERMINÉE</h1>
+        <p>Ton score : <span id="scoreFinal">0</span></p>
+        <button id="rejouer">REJOUER</button>
+    </div>
 
-  <script type="module" src="script.js"></script>
+    <div id="commandes">
+        W A S D : Déplacement<br>
+        ESPACE : Tirer
+    </div>
+
+    <div id="jeu"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+
 </body>
 </html>

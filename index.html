@@ -2,40 +2,39 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Combat 3D</title>
-    <link rel="stylesheet" href="./style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Combat 3D</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div id="menu">
+    <h1>COMBAT 3D</h1>
+    <button id="jouer">JOUER</button>
+    <p>Survis et élimine les ennemis !</p>
+  </div>
 
-    <div id="menu">
-        <h1>COMBAT 3D</h1>
-        <p>Prépare-toi au combat !</p>
-        <button id="jouer">JOUER</button>
-        <p id="erreur"></p>
-    </div>
+  <div id="hud">
+    <div>❤️ Vie : <span id="vie">100</span></div>
+    <div>Éliminations : <span id="score">0</span></div>
+    <div>Munition : <span id="ammo">30</span></div>
+  </div>
 
-    <div id="interface">
-        <p>❤️ Vies : <span id="vies">100</span></p>
-        <p>⭐ Score : <span id="score">0</span></p>
-    </div>
+  <div id="message"></div>
 
-    <div id="commandes">
-        W A S D : Se déplacer<br>
-        ESPACE : Tirer
-    </div>
+  <div id="pause" class="overlay">
+    <h1>PAUSE</h1>
+    <button id="reprendre">REPRENDRE</button>
+    <button id="recommencer">RECOMMENCER</button>
+  </div>
 
-    <div id="fin">
-        <h1>PARTIE TERMINÉE</h1>
-        <p>Score : <span id="scoreFinal">0</span></p>
-        <button id="rejouer">REJOUER</button>
-    </div>
+  <div id="gameover" class="overlay">
+    <h1>PARTIE TERMINÉE</h1>
+    <button id="rejouer">REJOUER</button>
+  </div>
 
-    <div id="jeu"></div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="./script.js"></script>
-
-</body>
-</html>
+  <div id="mobileControls">
+    <div class="movePad">
+      <button data-key="z">▲</button>
+      <div>
+        <button data-key="q">◀

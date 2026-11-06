@@ -1,42 +1,68 @@
 
 body {
   margin: 0;
-  text-align: center;
-  background: #171c2b;
-  color: white;
+  overflow: hidden;
   font-family: Arial, sans-serif;
+  background: #111;
+  color: white;
 }
 
-h1 {
-  color: #ffd43b;
-  margin: 20px;
-}
-
-#infos {
+#hud {
+  position: absolute;
+  top: 15px;
+  left: 15px;
   display: flex;
-  justify-content: center;
-  gap: 40px;
-  margin: 15px;
+  gap: 25px;
   font-size: 20px;
+  font-weight: bold;
+  z-index: 2;
 }
 
-canvas {
-  background: #478b45;
-  border: 5px solid #ffffff;
-  max-width: 95%;
-  height: auto;
-  cursor: crosshair;
+#viseur {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32px;
+  font-weight: bold;
+  pointer-events: none;
+  z-index: 2;
+}
+
+#menu {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+  text-align: center;
+}
+
+#menu h1 {
+  color: #ffcc33;
+  font-size: 45px;
 }
 
 button {
   background: #ffbd35;
+  color: black;
+  padding: 16px 45px;
   border: none;
-  padding: 12px 25px;
   border-radius: 10px;
-  font-size: 18px;
+  font-size: 24px;
+  font-weight: bold;
   cursor: pointer;
 }
 
-button:hover {
-  background: #ffdf75;
+#message {
+  position: absolute;
+  top: 65%;
+  width: 100%;
+  text-align: center;
+  font-size: 25px;
+  font-weight: bold;
+  pointer-events: none;
 }

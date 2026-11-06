@@ -8,24 +8,39 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="menu">
+  <div id="menu" class="screen">
     <h1>COMBAT 3D</h1>
-    <p>Élimine les bots et récupère leurs récompenses !</p>
+    <p>Survis et élimine tous les bots !</p>
     <button id="playButton">JOUER</button>
     <p class="instructions">
-      ZQSD / WASD : bouger · Souris : viser · Clic gauche : tirer<br>
-      1 : fusil · R : recharger · Espace : sauter · Échap : pause
+      Z / W : avancer · S : reculer<br>
+      D : gauche · A : droite<br>
+      Clic gauche : tirer · Souris : viser<br>
+      Espace : sauter · Échap : pause
     </p>
+    <p id="loadMessage">Chargement du jeu...</p>
   </div>
 
   <div id="hud">
     <div class="stat">❤️ Vie : <span id="health">100</span></div>
     <div class="stat">🔫 Balles : <span id="ammo">150</span></div>
-    <div class="stat">☠️ Éliminations : <span id="kills">0</span></div>
+    <div class="stat">☠️ Bots éliminés : <span id="kills">0</span></div>
     <div id="message"></div>
   </div>
 
   <div id="crosshair">+</div>
+
+  <div id="pauseScreen" class="screen">
+    <h1>PAUSE</h1>
+    <button id="resumeButton">REPRENDRE</button>
+    <button id="pauseMenuButton">MENU</button>
+  </div>
+
+  <div id="gameOver" class="screen">
+    <h1>PARTIE TERMINÉE</h1>
+    <p>Bots éliminés : <span id="finalKills">0</span></p>
+    <button id="restartButton">RECOMMENCER</button>
+  </div>
 
   <div id="mobileControls">
     <div id="mobileMove">
@@ -36,22 +51,16 @@
         <button data-move="right">▶</button>
       </div>
     </div>
-    <button id="mobileShoot">TIRER</button>
-    <button id="mobileJump">SAUT</button>
+    <div id="mobileActions">
+      <button id="mobileJump">SAUT</button>
+      <button id="mobileShoot">TIRER</button>
+    </div>
   </div>
 
-  <div id="pauseScreen">
-    <h1>PAUSE</h1>
-    <button id="resumeButton">REPRENDRE</button>
-  </div>
-
-  <div id="gameOver">
-    <h1>PARTIE TERMINÉE</h1>
-    <p>Éliminations : <span id="finalKills">0</span></p>
-    <button id="restartButton">RECOMMENCER</button>
-  </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
+    onerror="document.getElementById('loadMessage').textContent='Erreur : impossible de charger Three.js. Vérifie Internet.'">
+  </script>
   <script src="script.js"></script>
 </body>
 </html>

@@ -8,62 +8,27 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <div id="menu">
     <h1>COMBAT 3D</h1>
-    <h2>BATTLE ROYALE</h2>
-    <p>Prépare-toi au combat !</p>
+    <p>Élimine les bots et récupère leurs récompenses !</p>
     <button id="playButton">JOUER</button>
-
-    <div class="instructions">
-      <p>W / Z : Avancer</p>
-      <p>S : Reculer</p>
-      <p>A / Q : Gauche</p>
-      <p>D : Droite</p>
-      <p>Souris : Viser</p>
-      <p>Clic gauche : Tirer</p>
-      <p>1 : Fusil d'assaut</p>
-      <p>2 : SPAS-12</p>
-      <p>R : Recharger</p>
-      <p>Espace : Sauter</p>
-      <p>Shift : Courir</p>
-      <p>Échap : Pause</p>
-    </div>
+    <p class="instructions">
+      ZQSD / WASD : bouger · Souris : viser · Clic gauche : tirer<br>
+      1 : fusil · R : recharger · Espace : sauter · Échap : pause
+    </p>
   </div>
 
   <div id="hud">
-    <div>❤️ VIE : <span id="health">100</span></div>
-    <div>ÉLIMINATIONS : <span id="score">0</span></div>
-    <div>ARME : <span id="weaponName">FUSIL D'ASSAUT</span></div>
-    <div>BALLES : <span id="ammo">30 / 30</span></div>
+    <div class="stat">❤️ Vie : <span id="health">100</span></div>
+    <div class="stat">🔫 Balles : <span id="ammo">150</span></div>
+    <div class="stat">☠️ Éliminations : <span id="kills">0</span></div>
+    <div id="message"></div>
   </div>
 
-  <!-- VISEUR -->
-  <div id="crosshair">
-    <div class="line top"></div>
-    <div class="line bottom"></div>
-    <div class="line left"></div>
-    <div class="line right"></div>
-    <div class="center-dot"></div>
-  </div>
-
-  <div id="enemyBars"></div>
-  <div id="notice"></div>
-
-  <div id="pause" class="overlay">
-    <h1>PAUSE</h1>
-    <button id="resumeButton">REPRENDRE</button>
-    <button id="restartButton">RECOMMENCER</button>
-  </div>
-
-  <div id="gameOver" class="overlay">
-    <h1>PARTIE TERMINÉE</h1>
-    <p>Éliminations : <span id="finalScore">0</span></p>
-    <button id="againButton">REJOUER</button>
-  </div>
+  <div id="crosshair">+</div>
 
   <div id="mobileControls">
-    <div id="movement">
+    <div id="mobileMove">
       <button data-move="forward">▲</button>
       <div>
         <button data-move="left">◀</button>
@@ -71,21 +36,22 @@
         <button data-move="right">▶</button>
       </div>
     </div>
-
-    <div id="actions">
-      <button id="mobileShoot">TIR</button>
-      <button id="mobileJump">SAUT</button>
-      <button id="mobileRun">COURIR</button>
-      <button id="mobileReload">RECHARGER</button>
-      <button id="mobileWeapon1">ARME 1</button>
-      <button id="mobileWeapon2">ARME 2</button>
-    </div>
+    <button id="mobileShoot">TIRER</button>
+    <button id="mobileJump">SAUT</button>
   </div>
 
-  <div id="error"></div>
+  <div id="pauseScreen">
+    <h1>PAUSE</h1>
+    <button id="resumeButton">REPRENDRE</button>
+  </div>
+
+  <div id="gameOver">
+    <h1>PARTIE TERMINÉE</h1>
+    <p>Éliminations : <span id="finalKills">0</span></p>
+    <button id="restartButton">RECOMMENCER</button>
+  </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="script.js"></script>
-
 </body>
 </html>

@@ -6,49 +6,54 @@
 body {
   margin: 0;
   overflow: hidden;
-  font-family: Arial, sans-serif;
   background: #111;
   color: white;
+  font-family: Arial, sans-serif;
 }
 
 canvas {
   display: block;
 }
 
-#menu, #pauseScreen, #gameOver {
+.screen {
   position: fixed;
   inset: 0;
-  z-index: 10;
+  z-index: 20;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  background: linear-gradient(135deg, #142d3d, #172017);
   padding: 20px;
+  text-align: center;
+  background: linear-gradient(135deg, #18394d, #17251b);
 }
 
-#menu h1, #pauseScreen h1, #gameOver h1 {
-  font-size: clamp(38px, 8vw, 75px);
+.screen h1 {
   margin: 0 0 15px;
   color: #ffd43b;
+  font-size: clamp(40px, 8vw, 76px);
   text-shadow: 3px 4px #222;
 }
 
 button {
+  margin: 7px;
+  padding: 14px 25px;
   border: 0;
   border-radius: 10px;
-  padding: 14px 28px;
-  margin: 8px;
+  background: #e34b28;
+  color: white;
   font-size: 18px;
   font-weight: bold;
-  color: white;
-  background: #e34b28;
   cursor: pointer;
+  touch-action: none;
 }
 
 button:hover {
   background: #ff7043;
+}
+
+button:active {
+  transform: scale(0.96);
 }
 
 .instructions {
@@ -56,21 +61,26 @@ button:hover {
   color: #ddd;
 }
 
+#loadMessage {
+  color: #ffe66d;
+  font-size: 14px;
+}
+
 #hud {
   position: fixed;
-  z-index: 4;
+  z-index: 5;
   top: 12px;
   left: 12px;
   display: none;
-  gap: 8px;
   flex-direction: column;
+  gap: 8px;
   pointer-events: none;
 }
 
 .stat {
-  background: #111c;
   padding: 9px 13px;
   border-radius: 7px;
+  background: #111c;
   font-size: 17px;
   font-weight: bold;
 }
@@ -83,38 +93,42 @@ button:hover {
 
 #crosshair {
   position: fixed;
-  display: none;
-  z-index: 5;
-  left: 50%;
+  z-index: 6;
   top: 50%;
+  left: 50%;
+  display: none;
   transform: translate(-50%, -50%);
+  color: white;
   font-size: 32px;
   font-weight: bold;
-  color: white;
-  text-shadow: 1px 1px 3px black;
+  text-shadow: 1px 1px 4px black;
   pointer-events: none;
 }
 
-#pauseScreen, #gameOver {
+#pauseScreen,
+#gameOver {
   display: none;
 }
 
 #mobileControls {
-  display: none;
   position: fixed;
-  z-index: 6;
-  inset: auto 0 15px;
+  z-index: 8;
+  right: 0;
+  bottom: 12px;
+  left: 0;
+  display: none;
   justify-content: space-between;
   align-items: end;
-  padding: 10px;
+  padding: 8px;
   pointer-events: none;
 }
 
 #mobileControls button {
-  pointer-events: auto;
-  opacity: 0.8;
-  padding: 14px;
   min-width: 52px;
+  min-height: 48px;
+  padding: 10px;
+  opacity: 0.85;
+  pointer-events: auto;
 }
 
 #mobileMove {
@@ -127,9 +141,15 @@ button:hover {
   display: flex;
 }
 
-#mobileShoot, #mobileJump {
+#mobileActions {
+  display: flex;
+  flex-direction: column;
+}
+
+#mobileShoot,
+#mobileJump {
   min-width: 75px !important;
-  min-height: 65px;
+  min-height: 60px !important;
 }
 
 @media (pointer: coarse), (max-width: 700px) {
@@ -137,12 +157,12 @@ button:hover {
     display: flex;
   }
 
-  #menu .instructions {
-    font-size: 12px;
+  .stat {
+    padding: 6px 9px;
+    font-size: 14px;
   }
 
-  .stat {
-    font-size: 14px;
-    padding: 6px 9px;
+  .instructions {
+    font-size: 13px;
   }
 }

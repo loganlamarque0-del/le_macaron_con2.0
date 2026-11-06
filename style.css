@@ -1,173 +1,99 @@
-
 * {
   box-sizing: border-box;
 }
 
-html, body {
-  width: 100%;
-  height: 100%;
+body {
   margin: 0;
   overflow: hidden;
   background: #111;
-  color: white;
   font-family: Arial, sans-serif;
 }
 
 canvas {
-  position: fixed;
-  inset: 0;
   display: block;
-  z-index: 0;
-}
-
-.screen {
   position: fixed;
   inset: 0;
-  z-index: 20;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  text-align: center;
-  background: linear-gradient(135deg, #18394d, #17251b);
+  z-index: 0;
 }
 
 .hidden {
   display: none !important;
 }
 
-.screen h1 {
-  color: #ffd43b;
-  font-size: clamp(40px, 8vw, 76px);
-  text-shadow: 3px 4px #222;
-  margin: 0 0 15px;
+#menu, #pause {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background: rgba(0, 0, 0, 0.85);
+}
+
+h1 {
+  font-size: 48px;
+  color: #ffcc00;
 }
 
 button {
-  margin: 7px;
-  padding: 14px 25px;
-  border: 0;
-  border-radius: 10px;
-  background: #e34b28;
-  color: white;
-  font-size: 18px;
+  padding: 16px 45px;
+  font-size: 22px;
   font-weight: bold;
   cursor: pointer;
-  touch-action: none;
-}
-
-button:hover {
-  background: #ff7043;
-}
-
-button:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-}
-
-.instructions {
-  line-height: 1.8;
-  color: #ddd;
+  border: 0;
+  border-radius: 10px;
+  background: #ffcc00;
 }
 
 #status {
-  color: #ffe66d;
-  font-weight: bold;
-  min-height: 22px;
+  color: white;
 }
 
 #hud {
   position: fixed;
+  inset: 0;
   z-index: 5;
-  top: 12px;
-  left: 12px;
-  display: none;
-  flex-direction: column;
-  gap: 8px;
   pointer-events: none;
+  color: white;
 }
 
-.stat {
-  padding: 9px 13px;
-  border-radius: 7px;
-  background: #111c;
-  font-size: 17px;
-  font-weight: bold;
+#health, #ammo {
+  position: absolute;
+  top: 15px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.65);
+  border-radius: 8px;
+  font-size: 20px;
 }
 
-#message {
-  color: #ffe66d;
-  font-weight: bold;
-  text-shadow: 1px 2px black;
+#health {
+  left: 15px;
+}
+
+#ammo {
+  right: 15px;
 }
 
 #crosshair {
-  position: fixed;
-  z-index: 6;
-  top: 50%;
+  position: absolute;
   left: 50%;
-  display: none;
+  top: 50%;
   transform: translate(-50%, -50%);
-  color: white;
   font-size: 32px;
   font-weight: bold;
-  text-shadow: 1px 1px 4px black;
-  pointer-events: none;
+  color: white;
+  text-shadow: 0 0 5px black;
 }
 
-#mobileControls {
-  position: fixed;
-  z-index: 8;
-  right: 0;
+#help {
+  position: absolute;
   bottom: 12px;
-  left: 0;
-  display: none;
-  justify-content: space-between;
-  align-items: end;
+  left: 50%;
+  transform: translateX(-50%);
   padding: 8px;
-  pointer-events: none;
-}
-
-#mobileControls button {
-  min-width: 52px;
-  min-height: 48px;
-  padding: 10px;
-  opacity: 0.85;
-  pointer-events: auto;
-}
-
-#mobileMove {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#mobileMove div {
-  display: flex;
-}
-
-#mobileActions {
-  display: flex;
-  flex-direction: column;
-}
-
-#mobileShoot, #mobileJump {
-  min-width: 75px !important;
-  min-height: 60px !important;
-}
-
-@media (pointer: coarse), (max-width: 700px) {
-  #mobileControls {
-    display: flex;
-  }
-
-  .stat {
-    padding: 6px 9px;
-    font-size: 14px;
-  }
-
-  .instructions {
-    font-size: 13px;
-  }
+  background: rgba(0, 0, 0, 0.6);
+  font-size: 13px;
+  text-align: center;
 }

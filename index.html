@@ -4,39 +4,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>COMBAT 3D</title>
+  <title>Combat 3D</title>
   <link rel="stylesheet" href="style.css">
-
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"
-    }
-  }
-  </script>
 </head>
 <body>
 
   <div id="menu">
     <h1>COMBAT 3D</h1>
-    <p>Battle Royale</p>
-    <button id="playButton">JOUER</button>
+    <h2>BATTLE ROYALE</h2>
+    <p>Prépare-toi au combat !</p>
+
+    <button id="playButton" type="button">JOUER</button>
+
     <div class="instructions">
-      <p>W / Z : Avancer</p>
-      <p>S : Reculer</p>
-      <p>A / Q : Gauche</p>
-      <p>D : Droite</p>
-      <p>1 : Fusil d'assaut</p>
-      <p>2 : SPAS-12</p>
-      <p>Clic gauche : Tirer</p>
+      <p><b>W / Z</b> : Avancer</p>
+      <p><b>S</b> : Reculer</p>
+      <p><b>A / Q</b> : Gauche</p>
+      <p><b>D</b> : Droite</p>
+      <p><b>Souris</b> : Viser</p>
+      <p><b>Clic gauche</b> : Tirer</p>
+      <p><b>1 / 2</b> : Changer d'arme</p>
+      <p><b>R</b> : Recharger</p>
+      <p><b>Espace</b> : Sauter</p>
+      <p><b>Shift</b> : Courir</p>
+      <p><b>Échap</b> : Pause</p>
     </div>
   </div>
 
   <div id="hud">
-    <div class="hud-box">❤️ VIE : <span id="health">100</span></div>
-    <div class="hud-box">ÉLIMINATIONS : <span id="score">0</span></div>
-    <div class="hud-box">ARME : <span id="weaponName">FUSIL D'ASSAUT</span></div>
-    <div class="hud-box">MUNITIONS : <span id="ammo">30</span></div>
+    <div>❤️ VIE : <span id="health">100</span></div>
+    <div>ÉLIMINATIONS : <span id="score">0</span></div>
+    <div>ARME : <span id="weaponName">FUSIL D'ASSAUT</span></div>
+    <div>BALLES : <span id="ammo">30 / 30</span></div>
   </div>
 
   <div id="crosshair">+</div>
@@ -51,32 +50,37 @@
 
   <div id="gameOver" class="overlay">
     <h1>PARTIE TERMINÉE</h1>
-    <p id="finalScore"></p>
+    <p>Éliminations : <span id="finalScore">0</span></p>
     <button id="againButton">REJOUER</button>
   </div>
 
   <div id="mobileControls">
-    <div id="joystick">
+    <div id="movement">
       <button data-move="forward">▲</button>
-      <div class="joystick-row">
+      <div>
         <button data-move="left">◀</button>
         <button data-move="back">▼</button>
         <button data-move="right">▶</button>
       </div>
     </div>
 
-    <div id="mobileActions">
-      <button id="mobileJump">SAUT</button>
+    <div id="actions">
       <button id="mobileShoot">TIR</button>
+      <button id="mobileJump">SAUT</button>
       <button id="mobileRun">COURIR</button>
       <button id="mobileReload">RECHARGER</button>
-      <button id="mobileWeapon1">1</button>
-      <button id="mobileWeapon2">2</button>
+      <button id="mobileWeapon1">ARME 1</button>
+      <button id="mobileWeapon2">ARME 2</button>
     </div>
   </div>
 
-  <div id="loading">CHARGEMENT DU JEU...</div>
+  <div id="error"></div>
 
-  <script type="module" src="script.js"></script>
+  <!-- Bibliothèque 3D -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Notre jeu -->
+  <script src="script.js"></script>
+
 </body>
 </html>

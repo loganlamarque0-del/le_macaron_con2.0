@@ -1,3 +1,4 @@
+
 * {
     margin: 0;
     padding: 0;
@@ -37,11 +38,11 @@ canvas {
 }
 
 h1 {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 button {
-    background: #00aaff;
+    background: #008cff;
     color: white;
     border: none;
     padding: 18px 45px;
@@ -49,10 +50,11 @@ button {
     font-weight: bold;
     border-radius: 12px;
     cursor: pointer;
+    margin-top: 20px;
 }
 
 button:hover {
-    background: #0077cc;
+    background: #005bbb;
 }
 
 #interface {
@@ -64,16 +66,19 @@ button:hover {
     color: white;
     font-size: 22px;
     line-height: 35px;
-    text-shadow: 2px 2px 3px black;
 }
 
 #commandes {
+    display: none;
     position: absolute;
     z-index: 5;
     bottom: 15px;
     left: 15px;
     color: white;
-    font-size: 16px;
     line-height: 25px;
-    text-shadow: 2px 2px 3px black;
+}
+
+#erreur {
+    color: #ff5555;
+    margin-top: 15px;
 }

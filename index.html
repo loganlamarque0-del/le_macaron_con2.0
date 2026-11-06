@@ -6,26 +6,92 @@
   <title>Combat 3D</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
+  <!-- MENU PRINCIPAL -->
   <div id="menu">
     <h1>COMBAT 3D</h1>
-    <button id="playButton">JOUER</button>
-    <p id="status">Chargement du jeu...</p>
+    <p>Prépare-toi au combat !</p>
+    <button id="playButton" disabled>CHARGEMENT...</button>
+    <p id="status">Chargement du moteur 3D...</p>
   </div>
 
+  <!-- INTERFACE DU JEU -->
   <div id="hud" class="hidden">
     <div id="health">Vie : 100</div>
     <div id="ammo">Munitions : 150</div>
     <div id="crosshair">+</div>
-    <div id="help">W/Z : avancer | S : reculer | D : gauche | A : droite | Clic gauche : tirer | Échap : libérer la souris</div>
+    <div id="help">
+      W/Z : avancer | S : reculer |
+      D : gauche | A : droite |
+      Clic gauche : tirer | Échap : pause
+    </div>
   </div>
 
+  <!-- PAUSE -->
   <div id="pause" class="hidden">
     <h1>PAUSE</h1>
     <button id="resumeButton">REPRENDRE</button>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="script.js"></script>
+  <!-- CHARGEMENT DES SCRIPTS -->
+  <script>
+    const statusText = document.getElementById("status");
+    const playButton = document.getElementById("playButton");
+
+    function loadGameScript() {
+      statusText.textContent = "Chargement du jeu...";
+
+      const gameScript = document.createElement("script");
+      gameScript.src = "script.js";
+
+      gameScript.onload = function () {
+        playButton.disabled = false;
+        playButton.textContent = "JOUER";
+        statusText.textContent = "Le jeu est prêt !";
+      };
+
+      gameScript.onerror = function () {
+        statusText.textContent =
+          "Erreur : impossible de trouver script.js. Vérifie son nom.";
+      };
+
+      document.body.appendChild(gameScript);
+    }
+
+    function loadThreeJS(url, fallback) {
+      const threeScript = document.createElement("script");
+      threeScript.src = url;
+
+      threeScript.onload = function () {
+        if (window.THREE) {
+          loadGameScript();
+        } else if (fallback) {
+          loadThreeJS(fallback, null);
+        } else {
+          statusText.textContent = "Erreur : Three.js n'a pas démarré.";
+        }
+      };
+
+      threeScript.onerror = function () {
+        if (fallback) {
+          statusText.textContent = "Nouvel essai de chargement...";
+          loadThreeJS(fallback, null);
+        } else {
+          statusText.textContent =
+            "Erreur Internet : impossible de charger le moteur 3D.";
+        }
+      };
+
+      document.head.appendChild(threeScript);
+    }
+
+    loadThreeJS(
+      "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js",
+      "https://unpkg.com/three@0.128.0/build/three.min.js"
+    );
+  </script>
+
 </body>
 </html>

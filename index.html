@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -6,74 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Combat 3D</title>
     <link rel="stylesheet" href="style.css">
+
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/128/three.min.js"></script>
+    <script defer src="script.js"></script>
 </head>
 <body>
+
     <div id="menu" class="overlay">
         <div class="panel">
             <h1>COMBAT 3D</h1>
-            <p>Prêt pour le combat ?</p>
-            <button id="playButton" disabled>CHARGEMENT...</button>
-            <p id="status">Préparation du jeu...</p>
+            <p>Entre dans l'arène et bats tes adversaires !</p>
+            <button id="playButton">JOUER</button>
+            <p class="instructions">
+                Z / W : avancer · S : reculer<br>
+                A / D : côtés · ESPACE : sauter<br>
+                Souris : regarder · Clic gauche : tirer
+            </p>
         </div>
     </div>
 
     <div id="pause" class="overlay hidden">
         <div class="panel">
-            <h1 id="pauseTitle">PAUSE</h1>
-            <p>Appuie sur E pour reprendre.</p>
+            <h1 id="pauseTitle">JEU EN PAUSE</h1>
+            <p>Appuie sur E ou clique pour reprendre.</p>
             <button id="resumeButton">REPRENDRE</button>
         </div>
     </div>
 
     <div id="hud" class="hidden">
-        <div class="stats">
-            <span>❤️ Vie : <b id="health">100</b></span>
-            <span>🔫 Munitions : <b id="ammo">150</b></span>
-            <span>Éliminations : <b id="kills">0</b></span>
-        </div>
-        <div id="help">
-            Z/W : avancer · S : reculer · A/D : gauche/droite<br>
-            Souris : tourner · Clic gauche : tirer · Espace : sauter · Échap : pause
-        </div>
+        <div class="stat">VIE : <span id="health">100</span></div>
+        <div class="stat">MUNITIONS : <span id="ammo">150</span></div>
+        <div class="stat">ÉLIMINATIONS : <span id="kills">0</span></div>
     </div>
 
     <div id="crosshair" class="hidden">
-        <span></span>
+        <div class="crosshair-line horizontal"></div>
+        <div class="crosshair-line vertical"></div>
     </div>
 
     <div id="errorMessage" class="hidden"></div>
 
-    <script>
-        const loadScript = (url) => new Promise((resolve, reject) => {
-            const script = document.createElement("script");
-            script.src = url;
-            script.onload = resolve;
-            script.onerror = reject;
-            document.head.appendChild(script);
-        });
-
-        (async () => {
-            try {
-                try {
-                    await loadScript("https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js");
-                } catch {
-                    await loadScript("https://unpkg.com/three@0.128.0/build/three.min.js");
-                }
-
-                await loadScript("script.js");
-
-                document.getElementById("playButton").disabled = false;
-                document.getElementById("playButton").textContent = "JOUER";
-                document.getElementById("status").textContent = "Jeu prêt !";
-            } catch (error) {
-                document.getElementById("status").textContent =
-                    "Erreur de chargement. Recharge la page.";
-                document.getElementById("errorMessage").textContent =
-                    "Impossible de charger le jeu. Vérifie ta connexion Internet.";
-                document.getElementById("errorMessage").classList.remove("hidden");
-                console.error(error);
-            }
-        })();
-    </script>
 </body>
 </html>

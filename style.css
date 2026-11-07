@@ -1,4 +1,3 @@
-
 * {
     box-sizing: border-box;
 }
@@ -8,23 +7,26 @@ html, body {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background: #111;
-    color: white;
     font-family: Arial, sans-serif;
+    background: #83c8ef;
+}
+
+body {
+    color: white;
 }
 
 canvas {
     position: fixed;
     inset: 0;
     display: block;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
+    z-index: 0;
 }
 
 .hidden {
     display: none !important;
 }
+
+/* Menus */
 
 .overlay {
     position: fixed;
@@ -33,129 +35,126 @@ canvas {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 0, 0, 0.72);
+    background: rgba(10, 20, 35, 0.72);
 }
 
 .panel {
-    width: min(90%, 430px);
-    padding: 30px;
+    width: min(90%, 480px);
+    padding: 35px;
     text-align: center;
-    background: rgba(25, 30, 40, 0.96);
-    border: 2px solid #54b9ff;
-    border-radius: 16px;
-    box-shadow: 0 0 30px rgba(0, 150, 255, 0.25);
+    border: 2px solid rgba(255,255,255,0.4);
+    border-radius: 18px;
+    background: linear-gradient(145deg, #244c83, #142b50);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
 }
 
 .panel h1 {
     margin-top: 0;
-    font-size: 38px;
+    font-size: 42px;
     letter-spacing: 3px;
+    text-shadow: 3px 3px #15233a;
 }
 
 .panel p {
-    color: #ddd;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 button {
+    padding: 15px 38px;
+    margin: 15px 0;
     border: 0;
-    border-radius: 8px;
-    padding: 15px 32px;
-    background: #1685e8;
-    color: white;
-    font-size: 19px;
-    font-weight: bold;
+    border-radius: 9px;
+    background: #ffc928;
+    color: #202020;
+    font-size: 20px;
+    font-weight: 900;
     cursor: pointer;
+    transition: transform 0.15s, background 0.15s;
 }
 
-button:hover:not(:disabled) {
-    background: #36a0ff;
+button:hover {
+    background: #ffe16b;
+    transform: scale(1.06);
 }
 
-button:disabled {
-    opacity: 0.55;
-    cursor: wait;
+button:active {
+    transform: scale(0.97);
 }
 
-#status {
+.instructions {
     font-size: 13px;
+    color: #dcecff;
 }
+
+/* Interface du jeu */
 
 #hud {
     position: fixed;
-    inset: 0;
     z-index: 5;
+    top: 18px;
+    left: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
     pointer-events: none;
 }
 
-.stats {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+.stat {
+    padding: 10px 15px;
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 8px;
+    background: rgba(12, 24, 40, 0.78);
+    font-size: 17px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px black;
 }
 
-.stats span {
-    padding: 10px 13px;
-    background: rgba(0, 0, 0, 0.65);
-    border-radius: 8px;
-    font-size: 15px;
-}
-
-#help {
-    position: absolute;
-    bottom: 15px;
-    left: 15px;
-    padding: 10px 13px;
-    border-radius: 8px;
-    background: rgba(0, 0, 0, 0.6);
-    font-size: 12px;
-    line-height: 1.6;
-}
+/* Viseur */
 
 #crosshair {
     position: fixed;
     z-index: 6;
-    top: 50%;
     left: 50%;
+    top: 50%;
     width: 22px;
     height: 22px;
     transform: translate(-50%, -50%);
     pointer-events: none;
 }
 
-#crosshair::before,
-#crosshair::after {
-    content: "";
+.crosshair-line {
     position: absolute;
     background: white;
     box-shadow: 0 0 3px black;
 }
 
-#crosshair::before {
-    width: 2px;
-    height: 22px;
-    left: 10px;
-    top: 0;
+.horizontal {
+    width: 22px;
+    height: 2px;
+    left: 0;
+    top: 10px;
 }
 
-#crosshair::after {
-    height: 2px;
-    width: 22px;
-    top: 10px;
-    left: 0;
+.vertical {
+    height: 22px;
+    width: 2px;
+    top: 0;
+    left: 10px;
 }
+
+/* Erreurs */
 
 #errorMessage {
     position: fixed;
-    z-index: 20;
-    bottom: 15px;
-    left: 15px;
-    right: 15px;
-    padding: 12px;
-    color: white;
-    background: #a52222;
+    z-index: 30;
+    left: 50%;
+    top: 20px;
+    transform: translateX(-50%);
+    width: min(90%, 700px);
+    padding: 15px;
     border-radius: 8px;
+    color: white;
+    background: #a82020;
+    font-weight: bold;
+    text-align: center;
 }

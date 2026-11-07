@@ -1,97 +1,79 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Combat 3D</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combat 3D</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-  <!-- MENU PRINCIPAL -->
-  <div id="menu">
-    <h1>COMBAT 3D</h1>
-    <p>Prépare-toi au combat !</p>
-    <button id="playButton" disabled>CHARGEMENT...</button>
-    <p id="status">Chargement du moteur 3D...</p>
-  </div>
-
-  <!-- INTERFACE DU JEU -->
-  <div id="hud" class="hidden">
-    <div id="health">Vie : 100</div>
-    <div id="ammo">Munitions : 150</div>
-    <div id="crosshair">+</div>
-    <div id="help">
-      W/Z : avancer | S : reculer |
-      D : gauche | A : droite |
-      Clic gauche : tirer | Échap : pause
+    <div id="menu" class="overlay">
+        <div class="panel">
+            <h1>COMBAT 3D</h1>
+            <p>Prêt pour le combat ?</p>
+            <button id="playButton" disabled>CHARGEMENT...</button>
+            <p id="status">Préparation du jeu...</p>
+        </div>
     </div>
-  </div>
 
-  <!-- PAUSE -->
-  <div id="pause" class="hidden">
-    <h1>PAUSE</h1>
-    <button id="resumeButton">REPRENDRE</button>
-  </div>
+    <div id="pause" class="overlay hidden">
+        <div class="panel">
+            <h1 id="pauseTitle">PAUSE</h1>
+            <p>Appuie sur E pour reprendre.</p>
+            <button id="resumeButton">REPRENDRE</button>
+        </div>
+    </div>
 
-  <!-- CHARGEMENT DES SCRIPTS -->
-  <script>
-    const statusText = document.getElementById("status");
-    const playButton = document.getElementById("playButton");
+    <div id="hud" class="hidden">
+        <div class="stats">
+            <span>❤️ Vie : <b id="health">100</b></span>
+            <span>🔫 Munitions : <b id="ammo">150</b></span>
+            <span>Éliminations : <b id="kills">0</b></span>
+        </div>
+        <div id="help">
+            Z/W : avancer · S : reculer · A/D : gauche/droite<br>
+            Souris : tourner · Clic gauche : tirer · Espace : sauter · Échap : pause
+        </div>
+    </div>
 
-    function loadGameScript() {
-      statusText.textContent = "Chargement du jeu...";
+    <div id="crosshair" class="hidden">
+        <span></span>
+    </div>
 
-      const gameScript = document.createElement("script");
-      gameScript.src = "script.js";
+    <div id="errorMessage" class="hidden"></div>
 
-      gameScript.onload = function () {
-        playButton.disabled = false;
-        playButton.textContent = "JOUER";
-        statusText.textContent = "Le jeu est prêt !";
-      };
+    <script>
+        const loadScript = (url) => new Promise((resolve, reject) => {
+            const script = document.createElement("script");
+            script.src = url;
+            script.onload = resolve;
+            script.onerror = reject;
+            document.head.appendChild(script);
+        });
 
-      gameScript.onerror = function () {
-        statusText.textContent =
-          "Erreur : impossible de trouver script.js. Vérifie son nom.";
-      };
+        (async () => {
+            try {
+                try {
+                    await loadScript("https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js");
+                } catch {
+                    await loadScript("https://unpkg.com/three@0.128.0/build/three.min.js");
+                }
 
-      document.body.appendChild(gameScript);
-    }
+                await loadScript("script.js");
 
-    function loadThreeJS(url, fallback) {
-      const threeScript = document.createElement("script");
-      threeScript.src = url;
-
-      threeScript.onload = function () {
-        if (window.THREE) {
-          loadGameScript();
-        } else if (fallback) {
-          loadThreeJS(fallback, null);
-        } else {
-          statusText.textContent = "Erreur : Three.js n'a pas démarré.";
-        }
-      };
-
-      threeScript.onerror = function () {
-        if (fallback) {
-          statusText.textContent = "Nouvel essai de chargement...";
-          loadThreeJS(fallback, null);
-        } else {
-          statusText.textContent =
-            "Erreur Internet : impossible de charger le moteur 3D.";
-        }
-      };
-
-      document.head.appendChild(threeScript);
-    }
-
-    loadThreeJS(
-      "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js",
-      "https://unpkg.com/three@0.128.0/build/three.min.js"
-    );
-  </script>
-
+                document.getElementById("playButton").disabled = false;
+                document.getElementById("playButton").textContent = "JOUER";
+                document.getElementById("status").textContent = "Jeu prêt !";
+            } catch (error) {
+                document.getElementById("status").textContent =
+                    "Erreur de chargement. Recharge la page.";
+                document.getElementById("errorMessage").textContent =
+                    "Impossible de charger le jeu. Vérifie ta connexion Internet.";
+                document.getElementById("errorMessage").classList.remove("hidden");
+                console.error(error);
+            }
+        })();
+    </script>
 </body>
 </html>
